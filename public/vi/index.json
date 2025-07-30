@@ -1,0 +1,155 @@
+[
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/",
+	"title": "Chuẩn bị EC2 và VPC",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này chúng ta sẽ tạo VPC, SecurityGroup và EC2\nĐể tránh sai sót trong quá trình làm bạn nên tìm hiểu qua bài lab này :\nGiới thiệu về Amazon EC2 Nội dung Tạo VPC Tạo security group Tạo máy chủ Linux public "
+},
+{
+	"uri": "//localhost:1313/vi/",
+	"title": "Đưa dự án lên Cloud",
+	"tags": [],
+	"description": "",
+	"content": "Đưa dự án lên Cloud sử dụng EC2 và RDS Tổng quan Trong bài lab này, bạn sẽ thực hiện đưa dự án của lên trên Cloud, chúng ta sẽ chạy dự án trên EC2, đưa dữ liệu vào lên RDS để bảo mật, dùng thêm CloudWatch để quan sát server và RDS, chúng ta cũng dùng thêm S3 để lưu ảnh.\nNội dung Giới thiệu Các bước chuẩn bị Tạo kết nối đến máy chủ EC2 Quản lý session logs Dọn dẹp tài nguyên "
+},
+{
+	"uri": "//localhost:1313/vi/4-s3log/4.1-updateiamrole/",
+	"title": "Đưa dự án lên EC2",
+	"tags": [],
+	"description": "",
+	"content": "Về cách kết nối EC2 bằng visua bạn có thể xem lại bài lab này https://000004.awsstudygroup.com/vi/\nBạn cần đưa dự án của bạn lên Github trước, bạn có thể xem qua bài viết này. https://docs.github.com/en/get-started/start-your-journey/uploading-a-project-to-github Cài Git và .NET SDK trên EC2 để có thể chạy dự án. sudo install git -y\rsudo dnf install dotnet -sdk-8.0 -y Clone dự án về EC2.\ngit clone https://github.com/'your-username'/'project-name'.git cd \u0026lsquo;project-name\u0026rsquo; Các bước thực hiện chạy dự án trên EC2\nDi chuyển đến thư mục dự bạn vừa clone cd ~/GoodsManager Xem toàn bộ file có trong thư mục đó ls -lh Thực hiện lệnh saudotnet publish \u0026lsquo;file .csproj\u0026rsquo; -c Release -o ./publish Di chuyển vào cd publish Tiếp tục xem toàn bộ file ls -lh Bạn sẽ thấy những file như .dll, appsettings.json và các file cần thiết khác Chạy lệnh dotnet \u0026lsquo;Tên file.dll\u0026rsquo; \u0026ndash;urls \u0026ldquo;http://0.0.0.0:5000\u0026rdquo;\nĐường dẫn truy cập sẽ là http://\u0026lsquo;IPV4 public của EC2\u0026rsquo;:5000/ Bạn sẽ thấy như sau Để sửa trực tiếp code\nChọn Open Folde Nhập đường dẫn chữa dự án VD : /home/ec2-user/GoodsManage Chọn Trust the authors of all files in the parent folder \u0026rsquo;ec2-user\u0026rsquo; Chọn Yes Đây là giao diện file dự án "
+},
+{
+	"uri": "//localhost:1313/vi/1-introduce/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Hệ thống được triển khai dựa trên nền tảng dịch vụ đám mây AWS nhằm đảm bảo hiệu suất, bảo mật và khả năng mở rộng cho ứng dụng web.\nKiến trúc sử dụng các dịch vụ chính của AWS như EC2, RDS, S3, IAM, VPC, CloudWatch, Lambda và SNS, nhằm mục tiêu triển khai một hệ thống hoàn chỉnh từ xử lý đến giám sát, phân quyền và cảnh báo tự động.\nCác thành phần chính của hệ thống:\nEC2: Dùng để chạy dự án chính (ứng dụng web hoặc backend API) với khả năng tùy chỉnh linh hoạt về cấu hình máy chủ và mở rộng khi cần thiết.\nRDS: Cung cấp cơ sở dữ liệu quản lý tập trung (ví dụ: MySQL, PostgreSQL) và được đặt trong VPC riêng biệt nhằm tăng cường bảo mật và tránh truy cập trái phép từ internet.\nS3: Dùng để lưu trữ hình ảnh, tài liệu tĩnh hoặc các nội dung media từ hệ thống với khả năng mở rộng không giới hạn và chi phí thấp.\nIAM: Quản lý phân quyền truy cập của người dùng (Admin, Dev\u0026hellip;) theo đúng nguyên tắc tối thiểu quyền (least privilege), đảm bảo ai làm gì được trong hệ thống.\nCloudWatch: Theo dõi và giám sát hiệu suất của hệ thống, bao gồm tài nguyên EC2, RDS và Lambda. Ghi log, cảnh báo khi có bất thường như CPU sử dụng cao, lỗi kết nối, v.v.\nLambda: Chạy các hàm tự động – ví dụ như gửi thông báo khi CPU EC2 vượt ngưỡng hoặc khi có sự kiện đặc biệt xảy ra trong hệ thống.\nSNS: Kết hợp cùng Lambda để gửi email cảnh báo đến quản trị viên khi xảy ra sự cố (như quá tải CPU hoặc lỗi ứng dụng).\nVPC: Cấu hình mạng riêng ảo (Virtual Private Cloud) đảm bảo hệ thống hoạt động cách ly, an toàn, và kiểm soát kết nối mạng tốt hơn.\nƯu điểm của mô hình:\nTự động hóa cảnh báo và giám sát thông minh, giúp phát hiện sự cố sớm.\nPhân quyền rõ ràng giữa Dev và Admin nhờ IAM.\nBảo mật cao, không mở truy cập trực tiếp vào RDS từ internet.\nLưu trữ linh hoạt, chi phí thấp qua S3.\nDễ mở rộng và quản lý hiệu quả thông qua các dịch vụ tích hợp sẵn trên AWS.\nVới kiến trúc này, hệ thống không chỉ đảm bảo tính sẵn sàng cao mà còn tiết kiệm thời gian vận hành và chi phí quản lý, rất phù hợp với các dự án thực tế trong môi trường doanh nghiệp hiện đại.\n"
+},
+{
+	"uri": "//localhost:1313/vi/3-accessibilitytoinstances/3.1-public-instance/",
+	"title": "Tạo SNS",
+	"tags": [],
+	"description": "",
+	"content": " Truy cập vào giao diện quản trị của dịch vụ SNS. Click chọn Topics. Chọn Create topic. Tại trang Create topic. Click chọn Standard. Tại ô Name điền Notify-Alerts. Kéo xuống dưới chọn Create topic. Đây là giao diện sau khi tạo xong.\nChọn Create subscription. Tại giao diện Create subscription.\nTại Ô Protocol chọn Email . Tại Ô Endpoint điền Email của bạn. Sau đó Create subscription. Sau đó bạn sẽ bạn sẽ nhận mail xác nhận.\nChọn Confirm subscription Sau đó bạn sẽ được đưa đến trang đã xác nhận. Sau đó quay lại trang SNS bạn sẽ thấy thông báo thành công. "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.1-createvpc/",
+	"title": "Tạo VPC ",
+	"tags": [],
+	"description": "",
+	"content": "Tạo VPC Lab VPC Truy cập VPC service management console Chọn Your VPC. Chọn Create VPC. Tại trang giao diện Create VPC. Tại Mục Resources to create tích vào ô VPC and more. Tại ô Name tag, điền Project-vpc. Tại ô IPv4 CIDR, điền: 10.0.0.0/16. Những thứ khác để mặc định. Chọn Create VPC. Thông báo thành công. "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/",
+	"title": "Các bước chuẩn bị",
+	"tags": [],
+	"description": "",
+	"content": "Để đưa dự án lên Cloud trước hết chúng ta cần chuẩn bị một số dịch vụ, sau đây là các bước thực hiện.\nNội dung Tạo EC2 và VPC Tạo IAM Role Tạo cơ sở dữ liệu bằng RDS Tạo S3 "
+},
+{
+	"uri": "//localhost:1313/vi/4-s3log/4.2-creates3bucket/",
+	"title": "Đưa csdl từ local lên RDS",
+	"tags": [],
+	"description": "",
+	"content": " Mở terminal hoặc powershell trên máy của bạn. chạy lệnh scp -i your-key.pem C:/duong-dan/Tên file .sql ec2-user@\u0026#39;EC2_PUBLIC_IP\u0026#39;:~/ Sau khi chạy xong thì mở EC2 và chạy thử ls -lh Tên file .sql Import vào RDS Truy cập vào RDS để lấy EndPoint Đăng nhập vào RDS Lệnh đăng nhập RDS mysql -h \u0026lsquo;End-Point-RDS\u0026rsquo; -P 3306 -u admin -p Bạn sẽ được yêu cầu nhập mật khẩu để vào RDS, hãy nhập mật khẩu lúc bạn tạo RDS là được. Tạo database\nLệnh tạo database CREATE DATABASE QuanLyDonHangDB; Lệnh thoát EXIT; Sau đó chạy lệnh sau để import dự liệu vào\nmysql -h -P 3306 -u admin -p QuanLyDonHangDB \u0026lt; QuanLyDonHangDB.sql Kết nối csdl với web\n\u0026#34;ConnectionStrings\u0026#34;: {\r\u0026#34;DefaultConnection\u0026#34;: \u0026#34;Server=\u0026lt;Địa chỉ end point của RDS\u0026gt;;Port=3306;Database=\u0026lt;Tên database\u0026gt;;User=admin;Password=\u0026lt;Mật khẩu database\u0026gt;;\u0026#34;\r}, "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.2-createiamrole/",
+	"title": "Tạo IAM Role",
+	"tags": [],
+	"description": "",
+	"content": "Tạo IAM Lab IAM Truy cập giao diện quản trị dịch vụ IAM. Click Users group. Click Create group. Tại trang Create User group. Tại mục User group điền DevGroup. Tại mục Attach permissions policies - Optional. Chọn các quyền AmazonS3FullAccess, AmazonRDSReadOnlyAccess, CloudWatchLogsReadOnlyAcces, AWSLambda_ReadOnlyAccess. Click Create user group. Tương tự như trên ta tạo thêm 2 IAM Role nữa Truy cập giao diện quản trị dịch vụ IAM.\nChọn Roles. Chọn Create Role. Tại giao diện Select trusted entity.\nChọn AWS service. Ở phần Service or user case chọn Lambda. Tại giao diện Add permissons.\nTìm và chọn AmazonEC2FullAccess, AmazonSNSFullAccess, CloudWatchFullAccess. Tại giao diện Role details.\nỞ ô Role name nhập LambdaStopEC2Role. Kiểm tra lại các thông tin sau đó nhấn Create role. Giao diện khi tạo thành công. Lập lại từ bước 1.\nTại giao diện Add permissons tìm và chọn AWSLambdaBasicExecutionRole, AmazonSNSFullAccess. Tại giao diện Role details ở ô Role name nhập Lambda_S3_Notify_Role. Nhấn vào Create role. "
+},
+{
+	"uri": "//localhost:1313/vi/3-accessibilitytoinstances/3.2-createlambda/",
+	"title": "Tạo Lambda",
+	"tags": [],
+	"description": "",
+	"content": " Truy cập vào giao diện quản trị của dịch vụ Lambda.\nClick chọn Create Function. Tại trang Create function. Tại mục Function name điền StopEC2OnHighCPU. Tại mục Runtime chọn Python 3.13. Ở Function role chọn Use an exsting role. Ở Exsting role chọn LambdaStopEC2Role. Chọn Create Function. Giao diện sau khi tạo xong.\nThêm đoạn code sau vào phần Code source. import boto3\rdef handler(event, context):\rec2 = boto3.client(\u0026#39;ec2\u0026#39;)\r# Thay bằng Instance ID thật của bạn\rinstance_id = \u0026#39;i-0a46358d5******\u0026#39;\rresponse = ec2.stop_instances(InstanceIds=[instance_id])\rprint(f\u0026#34;✅ EC2 instance {instance_id} is being stopped. Response: {response}\u0026#34;) Sau khi thêm thì chọn Deploy hoặc nhấn tổ hợp phím Ctrl + Shift + U. Làm lại từ bước 1.\nỞ phần Function name điền NotifyS3Upload. Ở Exsting role chọn Lambda_S3_Notify_Role. Và chọn Create Function. Tương tự như trên ta sẽ thêm đoạn code sau vào Code source.\nimport boto3\rdef lambda_handler(event, context):\rprint(\u0026#34;🧾 S3 Event Triggered:\u0026#34;)\rprint(event)\rsns = boto3.client(\u0026#39;sns\u0026#39;)\rresponse = sns.publish(\r# Thay ARN bằng đường dẫn ARN của bạn lấy trong SNS -\u0026gt; ARN\rTopicArn=\u0026#39;arn:aws:sns:us-east-1:958699963579:Notify-Alerts\u0026#39;,\rSubject=\u0026#39;🖼️ S3 có ảnh mới!\u0026#39;,\rMessage=f\u0026#39;S3 Upload Event:\\n{event}\u0026#39;\r)\rprint(\u0026#34;📤 SNS Sent:\u0026#34;, response) Bạn có thể truy cập vào Dịch vụ Lambda để lấy được ARN. Sau khi bạn Deploy xong ta chọn Configuration.\nKéo xuống dưới chọn vào chỉ mục Permissions. Kéo xuống dưới chọn Add permissions Tại giao diện Add permissions\nChọn AWS Service. Tại Serive chọn S3. Ở Statement ID điền AllowS3Invoke. Ở Principal điền địa chỉ ARN của SNS hồi nãy. Ở phần Action chọn lambda:InvokeFunction. Cuối cùng chọn Save. Giao diện khi tạo xong. "
+},
+{
+	"uri": "//localhost:1313/vi/4-s3log/4.3-creategwes3/",
+	"title": "Connect S3 vào dự án",
+	"tags": [],
+	"description": "",
+	"content": " Cài S3 vào dự án của bạn. dotnet add package AWSSDK.S3 Cấu hình trong appsettings.json \u0026#34;AWS\u0026#34;: {\r\u0026#34;Region\u0026#34;: \u0026#34;us-east-1\u0026#34;,\r\u0026#34;BucketName\u0026#34;: \u0026#34;quanlydonhang-images\u0026#34;\r} Viết service xử lý. using Amazon.S3;\rusing Amazon.S3.Transfer;\rusing Microsoft.Extensions.Configuration;\rpublic class S3Service\r{\rprivate readonly IAmazonS3 _s3Client;\rprivate readonly string _bucketName;\rpublic S3Service(IAmazonS3 s3Client, IConfiguration config)\r{\r_s3Client = s3Client;\r_bucketName = config[\u0026#34;AWS:BucketName\u0026#34;];\r}\rpublic async Task\u0026lt;string\u0026gt; UploadFileAsync(IFormFile file)\r{\rvar key = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);\rusing var stream = file.OpenReadStream();\rvar uploadRequest = new TransferUtilityUploadRequest\r{\rInputStream = stream,\rKey = key,\rBucketName = _bucketName,\rContentType = file.ContentType\r};\rvar transferUtility = new TransferUtility(_s3Client);\rawait transferUtility.UploadAsync(uploadRequest);\rreturn key;\r}\rpublic string GetFileUrl(string key)\r{\rreturn $\u0026#34;https://{_bucketName}.s3.amazonaws.com/{key}\u0026#34;;\r}\r} Đăng ký S3Service vào Program.cs builder.Services.AddAWSService\u0026lt;IAmazonS3\u0026gt;();\rbuilder.Services.AddScoped\u0026lt;S3Service\u0026gt;(); Code mẫu xử lý việc upload ảnh [HttpPost(\u0026#34;upload\u0026#34;)]\rpublic async Task\u0026lt;IActionResult\u0026gt; UploadImage(IFormFile file, [FromServices] S3Service s3Service)\r{\rvar key = await s3Service.UploadFileAsync(file);\rvar url = s3Service.GetFileUrl(key);\rreturn Ok(new { Url = url });\r} "
+},
+{
+	"uri": "//localhost:1313/vi/3-accessibilitytoinstances/",
+	"title": "Tạo kết nối đến máy chủ EC2",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này, chúng ta sẽ thực hiện tạo kết nối đến các máy chủ EC2 của chúng ta, nằm trong cả public và private subnet.\nNội dung 3.1. Tạo thông báo SNS 3.2. Tạo Lambda tự động 3.3. Tạo thông báo cho S3 3.4. Tạo CloudWatch\n"
+},
+{
+	"uri": "//localhost:1313/vi/3-accessibilitytoinstances/3.3-creates3notify/",
+	"title": "Tạo S3 Notify by Lambda",
+	"tags": [],
+	"description": "",
+	"content": " Truy cập vào giao diện quản trị của dịch vụ S3.\nClick chọn cf-templates-29w3zrvbs88r-us-east-1. Tại trang chi tiết. Click chọn Properties. Kéo xuống dưới phần Event notifications chọn Create event notification. Tại trang Create event notification Tại phần Event name điền Notify-Upload-lambda. Tại phần Subffix - optional điền .jpg. Click Start Session. Ở Object creation chọn Put. Qua phần Destination. Chọn Lambda function. Chọn Choose from your Lambda Functions. Ở Lambda function chọn NotifyS3Upload. Cuối cùng chọn Save changes. Đây là giao diện sau khi tạo xong. Quay lại trang chi tiết chúng ta sẽ thử upload hình lên để xem có thông báo không.\nChọn Upload. Kéo hình từ máy vào đây. Bạn cần up hình có đuôi là .jpg vì lúc nãy ta thiết lập chỉ thông báo khi hình có đuôi là .jpg\nSau khi up hình lên ta kéo xuống dưới chọn Upload. Giao diện sau khi upload thành công. Bạn sẽ nhận được một Email thông báo. "
+},
+{
+	"uri": "//localhost:1313/vi/4-s3log/",
+	"title": "Bắt đầu triển khai dự án lên Cloud",
+	"tags": [],
+	"description": "",
+	"content": "Trong phần này chúng ta sẽ tiến hành đưa dự án lên EC2, tiếp đó là cơ sở dữ liệu và cuối cùng là kết nối Data, S3 với web.\nNội dung: Đưa dự án .Net lên EC2 Tạo cơ sở dữ liệu từ local lên RDS Connect S3 vào dự án "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.2-createsecgroup/",
+	"title": "Tạo các security group",
+	"tags": [],
+	"description": "",
+	"content": "Tạo các security group Trong bước này chúng ta sẽ tiến hành tạo các security group được sử dụng cho các instance của chúng ta. Các bạn có thể thấy, các securiy group này sẽ không cần phải mở các port truyền thống để ssh như port 22 hoặc remote desktop thông qua port 3389.\nTạo security group cho Linux instance nằm trong public subnet Truy cập giao diện quản trị dịch vụ VPC Chọn Security Group. Chọn Create security group. Tại mục Security group name, điền PublicSGEC2. Tại mục Description, điền Public security group. Tại mục VPC, chọn project-vpc lúc nãy chúng ta tạo tại bước 2.1.1. Tại mục Inbound rules chọn Add rule. Type chọn SSH, Soucre chọn Anywere. Tương tự chọn thêm 2 rule nữa như sau. Type chọn HTTP, Soucre chọn Anywere Type chọn HTTPS, Soucre chọn Anywere Giữ nguyên Outbound rule, kéo chuột xuống phía dưới. Chọn Create security group. Tương tự như trên ta tạo thêm một security group nữa. Đặt tên là Private-DB-SG Tại mục VPC, chọn project-vpc Tại mục Inbound rules chọn Add rule. Type chọn MYSQL/Aurora, Soucre chọn Custom, chọn PublicSGEC2 ta tạo vừa nãy. Chọn Create security group "
+},
+{
+	"uri": "//localhost:1313/vi/3-accessibilitytoinstances/3.4-createcloudwatch/",
+	"title": "Tạo CloudWatch giám sát",
+	"tags": [],
+	"description": "",
+	"content": " Truy cập vào giao diện quản trị của dịch vụ Cloudwatch. Click chọn Alarms. Click All alarms. Click Create alarm. Tại trang Specify metric and conditions.\nClick chọn Select metric. Tại giao diện Select metric Kéo xuống chọn EC2. Chọn Per-Instance Metrics. Tìm và chọn CPUUtilization. Chọn Select metric. Ở phần than… ta điền 80\nChọn Next. Ở phần Notification chọn Add notification.\nTại phần Send a notification to… chọn Notify-Alerts. ở phần Lambda action chọn Add Lambda action.\nTại phần Choose a function chọn StopEC2OnHighCPU. Chọn Next. Tại trang Add alarm details.\nTại phần Add alarm details điền tên bạn muốn lưu ý tên phải là duy nhất. Chọn Next. Kiểm tra lại thông tin sau đó chọn Create Alarm. Giao diện sau khi tạo xong. "
+},
+{
+	"uri": "//localhost:1313/vi/5-cleanup/",
+	"title": "Dọn dẹp tài nguyên",
+	"tags": [],
+	"description": "",
+	"content": "Chúng ta sẽ tiến hành các bước sau để xóa các tài nguyên chúng ta đã tạo trong bài thực hành này.\nTruy cập giao diện quản trị dịch vụ EC2 Click Instances. Click chọn cả 2 instance Public Linux Instance và Private Windows Instance. Click Instance state. Click Terminate instance, sau đó click Terminate để xác nhận. Truy cập giao diện quản trị dịch vụ IAM Click Roles. Tại ô tìm kiếm , điền Lambda_S3_Notify_Role. Click chọn Lambda_S3_Notify_Role. Click Delete, sau đó điền tên role Lambda_S3_Notify_Role và click Delete để xóa role. Làm tương tự với LambdaStopEC2Role Truy cập giao diện quản trị dịch vụ S3 Click chọn S3 bucket chúng ta đã tạo cho bài thực hành. Click Empty. Điền permanently delete, sau đó click Empty để tiến hành xóa object trong bucket. Click Exit. Để đảm bảo xóa sạch bạn có thể tham https://000057.awsstudygroup.com/11-cleanup/ Truy cập giao diện quản trị dịch vụ RDS Chọn database-1. Chọn Actions. Chọn Delete. Bỏ tick Create final snapshot và Retain automated backups. Chọn I acknowledge that upon instance deletion, automated backups, including system snapshots and point-in-time recovery, will no longer be available. Điền delete me vào To confirm deletion, type delete me into the field. Truy cập giao diện quản trị dịch vụ VPC Bạn có thể tham khỏa cách xóa ở bài lab này https://000003.awsstudygroup.com/6-cleanup/\nXóa Subnet Xóa SecurityGroup Xóa router Xóa Your VPC Truy cập giao diện quản trị dịch vụ SNS Truy cập giao diện quản trị dịch vụ Lambda Truy cập giao diện quản trị dịch vụ CloudWatch "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.3-createec2linux/",
+	"title": "Tạo Public Linux EC2",
+	"tags": [],
+	"description": "",
+	"content": " Truy cập giao diện quản trị dịch vụ EC2 Chọn Instances. Chọn Launch instances. Tại trang Launch an instance. Ở mục Name and tags điền OrderAPI-EC2. Tại mục Application and OS Images (Amazon Machine Image), Click chọn Amazon Linux. Tại mục Instance type. Click chọn t2.micro. Tạo KeyPair. Tại mục **Key pair name - required ** chọn Create new key pair. Tại giao diện **Create key pair. Key pair name điền aws-keypair. Còn lại để mặc định. Nhấn Create key pair. Cấu hình Network settings. Chọn Edit. để tiếp tục. VPC - required chọn project-vpc. Subnet chọn project-subnet-public1-us-east-1a. Firewall (security groups) chọn Select existing security group. Common security groups chọn ec2-rds-1. Sau đó nhấn Launch instance. "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.3-createrds/",
+	"title": "Tạo cơ sở dữ liệu RDS",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Subnet group Truy cập giao diện quản trị dịch vụ RDS Chọn Subnet groups. Chọn Create DB Subnet group. Tại trang Create DB Subnet group.\nTại ô Name điền database-subnet-1. Tại ô Description điền subnet for database 1. Ở phần VPC chọn project-vpc. Ở phần Availability Zones chọn us-east-1a và us-east-1b. Tại phần Subnets.\nChọn project-subnet-private2-us-east-1b và project-subnet-private1-us-east-1a. Nhấn Create. Tạo RDS Truy cập giao diện quản trị dịch vụ RDS\nChọn Databases. Chọn Create database. Tại trang Create database.\nChọn Standard create. Ở phần Engine options chọn MySQL. Kéo xuống dưới.\nỞ phần Templates chọn Dev/test. Ở phần Availability and durability chọn Single-AZ DB instance deployment (1 instance). Kéo xuống phần Setting\nỞ phần DB instance identifier đặt tên là database-1 (tùy mọi người đặt). Trong phần Credentials Settings chọn Self managed. Ở ô Master password nhập mật đủ mạnh. Sau đó nhập lại mật khẩu ở ô Confirm master password. Kéo xuống phần Instance configuration.\nChọn Burstable classes (includes t classes). Chọn db.t3.micro. Kéo xuống phần Connectivity.\nChọn Connect to an EC2 compute resource. Ở phần EC2 instance chọn Order-API-EC2. Tiếp tục xuống phần DB subnet group để tiếp tục.\nChọn Choose existing Ở phần Existing DB subnet groups chọn database-subnet-1. Ở phần Additional VPC security group chọn Private-DB-Sg. Ở phần Database authentication ta để mặc định. Tại phần Log exports.\nTa chọn Error log và Slow query log. Sau đó chọn Create database. Đợi một lúc để tạo RDS. "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.4-creates3/",
+	"title": "Tạo S3",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Subnet group Truy cập giao diện quản trị dịch vụ RDS Chọn General purpose buckets. Chọn CCreate bucket. Tại trang Create bucket.\nTại phần Bucket type chọn General purpose. Ở phần Bucket name điền cf-templates-29w3zrvbs88r-us-east-1. Kiểm tra lại các thông tin còn những cái khác để nguyên.\nChọn Create bucket. "
+},
+{
+	"uri": "//localhost:1313/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
