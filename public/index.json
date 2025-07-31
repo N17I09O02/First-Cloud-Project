@@ -1,153 +1,153 @@
 [
 {
-	"uri": "//localhost:1313/3-accessibilitytoinstances/3.1-public-instance/",
+	"uri": "/3-accessibilitytoinstances/3.1-public-instance/",
 	"title": "Create SNS",
 	"tags": [],
 	"description": "",
 	"content": " Go to the SNS service management console. Click Topics. Click Create topic. On the Create topic page: Select Standard. In the Name field, enter Notify-Alerts. Scroll down and click Create topic. This is the interface after creation. Click Create subscription. On the Create subscription page: In the Protocol field, select Email. In the Endpoint field, enter your email address. Then click Create subscription. You will then receive a confirmation email. Click Confirm subscription. You will then be redirected to the confirmed page. Return to the SNS page and you will see a success notification. "
 },
 {
-	"uri": "//localhost:1313/2-prerequiste/2.1-createec2/2.1.1-createvpc/",
+	"uri": "/2-prerequiste/2.1-createec2/2.1.1-createvpc/",
 	"title": "Create VPC",
 	"tags": [],
 	"description": "",
 	"content": "Create VPC Lab VPC Go to the VPC service management console Select Your VPC. Click Create VPC. On the Create VPC interface: In the Resources to create section, check the box VPC and more. In the Name tag field, enter: Project-vpc. In the IPv4 CIDR field, enter: 10.0.0.0/16. Leave all other settings as default. Click Create VPC. Success notification. "
 },
 {
-	"uri": "//localhost:1313/4-s3log/4.1-updateiamrole/",
+	"uri": "/4-s3log/4.1-updateiamrole/",
 	"title": "Deploy the Project to EC2",
 	"tags": [],
 	"description": "",
 	"content": "For how to connect to EC2 using Visual Studio Code, you can refer to this lab: https://000004.awsstudygroup.com/vi/\nFirst, upload your project to GitHub. You can refer to this guide: https://docs.github.com/en/get-started/start-your-journey/uploading-a-project-to-github Install Git and .NET SDK on EC2 to be able to run the project. sudo install git -y\rsudo dnf install dotnet -sdk-8.0 -y Clone the project to EC2.\ngit clone https://github.com/'your-username'/'project-name'.git cd \u0026lsquo;project-name\u0026rsquo; Steps to run the project on EC2:\nNavigate to the cloned directory: cd ~/GoodsManager List all files in the directory: ls -lh Run the command: dotnet publish \u0026lsquo;file .csproj\u0026rsquo; -c Release -o ./publish Move to the publish folder: cd publish List all files again: ls -lh You will see files like .dll, appsettings.json, and other required files. Run the command:\ndotnet \u0026lsquo;YourFile.dll\u0026rsquo; \u0026ndash;urls \u0026ldquo;http://0.0.0.0:5000\u0026rdquo;\nAccess URL: http://\u0026lsquo;Your EC2 Public IPV4\u0026rsquo;:5000/ You will see the following: To edit code directly:\nChoose Open Folder Enter the project path, e.g.: /home/ec2-user/GoodsManage Select Trust the authors of all files in the parent folder \u0026rsquo;ec2-user\u0026rsquo; Click Yes This is the project file interface: "
 },
 {
-	"uri": "//localhost:1313/",
+	"uri": "/",
 	"title": "Deploying Projects to Cloud",
 	"tags": [],
 	"description": "",
 	"content": "Deploying the Project to the Cloud using EC2 and RDS Overview In this lab, you will deploy your project to the Cloud. We will run the project on EC2, upload data to RDS for security, use CloudWatch to monitor the server and RDS, and also use S3 to store images.\nContents Introduction Preparation Steps Connecting to the EC2 Instance Managing Session Logs Resource Cleanup "
 },
 {
-	"uri": "//localhost:1313/1-introduce/",
+	"uri": "/1-introduce/",
 	"title": "Introduction",
 	"tags": [],
 	"description": "",
 	"content": "The system is deployed on the AWS cloud platform to ensure performance, security, and scalability for the web application.\nThe architecture uses core AWS services such as EC2, RDS, S3, IAM, VPC, CloudWatch, Lambda, and SNS, aiming to deploy a complete system from processing to monitoring, access control, and automated alerts.\nMain components of the system:\nEC2: Used to run the main project (web application or backend API) with flexible customization of server configuration and scalability when needed.\nRDS: Provides centralized database management (e.g., MySQL, PostgreSQL) and is placed in a separate VPC to enhance security and prevent unauthorized access from the internet.\nS3: Used to store images, static documents, or media content from the system with unlimited scalability and low cost.\nIAM: Manages user access permissions (Admin, Dev\u0026hellip;) according to the principle of least privilege, ensuring users have only the necessary permissions in the system.\nCloudWatch: Monitors and observes system performance, including EC2, RDS, and Lambda resources. Logs and alerts when abnormalities occur, such as high CPU usage or connection errors.\nLambda: Executes automated functions – for example, sending notifications when EC2 CPU exceeds thresholds or when specific events occur in the system.\nSNS: Works with Lambda to send alert emails to administrators when incidents occur (such as CPU overload or application errors).\nVPC: Configures a Virtual Private Cloud to ensure the system operates in an isolated, secure environment with better network control.\nAdvantages of the architecture:\nAutomated and intelligent monitoring and alerting helps detect issues early.\nClear permission separation between Dev and Admin via IAM.\nHigh security by not exposing RDS to direct internet access.\nFlexible and low-cost storage via S3.\nEasily scalable and efficiently managed through AWS’s built-in services.\nWith this architecture, the system not only ensures high availability but also saves operational time and management costs, making it well-suited for real-world projects in modern enterprise environments.\n"
 },
 {
-	"uri": "//localhost:1313/2-prerequiste/2.1-createec2/",
+	"uri": "/2-prerequiste/2.1-createec2/",
 	"title": "Prepare EC2 and VPC",
 	"tags": [],
 	"description": "",
 	"content": "In this step, we will create VPC, Security Group, and EC2.\nTo avoid mistakes during the process, you should refer to this lab:\nIntroduction to Amazon EC2 Contents Create VPC Create security group Create public Linux server "
 },
 {
-	"uri": "//localhost:1313/2-prerequiste/2.2-createiamrole/",
+	"uri": "/2-prerequiste/2.2-createiamrole/",
 	"title": "Create IAM Role",
 	"tags": [],
 	"description": "",
 	"content": "Create IAM Lab IAM Go to the IAM service management console. Click User groups. Click Create group. On the Create User group page: In the User group field, enter DevGroup. In the Attach permissions policies - Optional section: Select the following permissions: AmazonS3FullAccess, AmazonRDSReadOnlyAccess, CloudWatchLogsReadOnlyAccess, AWSLambda_ReadOnlyAccess. Click Create user group. Similarly, create 2 more IAM Roles Go to the IAM service management console. Select Roles. Click Create Role. On the Select trusted entity page: Select AWS service. In the Service or use case section, choose Lambda. On the Add permissions page: Search for and select AmazonEC2FullAccess, AmazonSNSFullAccess, CloudWatchFullAccess. On the Role details page: In the Role name field, enter LambdaStopEC2Role. Review the information, then click Create role. Interface when the role is successfully created. Repeat from step 1. On the Add permissions page, search for and select AWSLambdaBasicExecutionRole, AmazonSNSFullAccess. On the Role details page, in the Role name field, enter Lambda_S3_Notify_Role. Click Create role. "
 },
 {
-	"uri": "//localhost:1313/3-accessibilitytoinstances/3.2-createlambda/",
+	"uri": "/3-accessibilitytoinstances/3.2-createlambda/",
 	"title": "Create Lambda",
 	"tags": [],
 	"description": "",
 	"content": " Go to the Lambda service management console.\nClick Create Function. On the Create function page: In Function name, enter StopEC2OnHighCPU. In Runtime, select Python 3.13. In Function role, choose Use an existing role. In Existing role, select LambdaStopEC2Role. Click Create Function. After creation, the function interface appears.\nAdd the following code to the Code source section: import boto3\rdef handler(event, context):\rec2 = boto3.client(\u0026#39;ec2\u0026#39;)\r# Replace with your actual Instance ID\rinstance_id = \u0026#39;i-0a46358d5******\u0026#39;\rresponse = ec2.stop_instances(InstanceIds=[instance_id])\rprint(f\u0026#34;✅ EC2 instance {instance_id} is being stopped. Response: {response}\u0026#34;) After adding the code, click Deploy or press Ctrl + Shift + U. Repeat from step 1: In Function name, enter NotifyS3Upload. In Existing role, select Lambda_S3_Notify_Role. Click Create Function. Similarly, add the following code to Code source:\nimport boto3\rdef lambda_handler(event, context):\rprint(\u0026#34;🧾 S3 Event Triggered:\u0026#34;)\rprint(event)\rpython\rSao chép\rChỉnh sửa\rsns = boto3.client(\u0026#39;sns\u0026#39;)\rresponse = sns.publish(\r# Replace the ARN with your actual ARN from SNS -\u0026gt; ARN\rTopicArn=\u0026#39;arn:aws:sns:us-east-1:958699963579:Notify-Alerts\u0026#39;,\rSubject=\u0026#39;🖼️ New image uploaded to S3!\u0026#39;,\rMessage=f\u0026#39;S3 Upload Event:\\n{event}\u0026#39;\r)\rprint(\u0026#34;📤 SNS Sent:\u0026#34;, response) "
 },
 {
-	"uri": "//localhost:1313/2-prerequiste/",
+	"uri": "/2-prerequiste/",
 	"title": "Preparation Steps",
 	"tags": [],
 	"description": "",
 	"content": "To deploy the project to the Cloud, we first need to prepare a number of services. Below are the steps to follow.\nContents Create EC2 and VPC Create IAM Role Create database using RDS Create S3 "
 },
 {
-	"uri": "//localhost:1313/4-s3log/4.2-creates3bucket/",
+	"uri": "/4-s3log/4.2-creates3bucket/",
 	"title": "Upload local database to RDS",
 	"tags": [],
 	"description": "",
 	"content": " Open terminal or PowerShell on your machine. Run the command: scp -i your-key.pem C:/path-to/your-file.sql ec2-user@\u0026#39;EC2_PUBLIC_IP\u0026#39;:~/ After running the command, open EC2 and verify: ls -lh your-file.sql Import into RDS: Go to the RDS console to get the Endpoint Log in to RDS: Command to log in to RDS: mysql -h \u0026lsquo;RDS-End-Point\u0026rsquo; -P 3306 -u admin -p You will be prompted to enter the password — just enter the one you used when creating RDS. Create a database: Command to create database: CREATE DATABASE QuanLyDonHangDB; Exit command: EXIT; Then run the following command to import the data: mysql -h \u0026lt;rds-endpoint\u0026gt; -P 3306 -u admin -p QuanLyDonHangDB \u0026lt; QuanLyDonHangDB.sql Connect the database to the web project: \u0026#34;ConnectionStrings\u0026#34;: {\r\u0026#34;DefaultConnection\u0026#34;: \u0026#34;Server=\u0026lt;RDS endpoint address\u0026gt;;Port=3306;Database=\u0026lt;Database name\u0026gt;;User=admin;Password=\u0026lt;Database password\u0026gt;;\u0026#34;\r}, "
 },
 {
-	"uri": "//localhost:1313/4-s3log/4.3-creategwes3/",
+	"uri": "/4-s3log/4.3-creategwes3/",
 	"title": "Connect S3 to the Project",
 	"tags": [],
 	"description": "",
 	"content": " Install S3 into your project: dotnet add package AWSSDK.S3 Configure appsettings.json: \u0026#34;AWS\u0026#34;: {\r\u0026#34;Region\u0026#34;: \u0026#34;us-east-1\u0026#34;,\r\u0026#34;BucketName\u0026#34;: \u0026#34;quanlydonhang-images\u0026#34;\r} Create a service to handle S3 interactions. using Amazon.S3;\rusing Amazon.S3.Transfer;\rusing Microsoft.Extensions.Configuration;\rpublic class S3Service\r{\rprivate readonly IAmazonS3 _s3Client;\rprivate readonly string _bucketName;\rpublic S3Service(IAmazonS3 s3Client, IConfiguration config)\r{\r_s3Client = s3Client;\r_bucketName = config[\u0026#34;AWS:BucketName\u0026#34;];\r}\rpublic async Task\u0026lt;string\u0026gt; UploadFileAsync(IFormFile file)\r{\rvar key = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);\rusing var stream = file.OpenReadStream();\rvar uploadRequest = new TransferUtilityUploadRequest\r{\rInputStream = stream,\rKey = key,\rBucketName = _bucketName,\rContentType = file.ContentType\r};\rvar transferUtility = new TransferUtility(_s3Client);\rawait transferUtility.UploadAsync(uploadRequest);\rreturn key;\r}\rpublic string GetFileUrl(string key)\r{\rreturn $\u0026#34;https://{_bucketName}.s3.amazonaws.com/{key}\u0026#34;;\r}\r} Register S3Service in Program.cs. builder.Services.AddAWSService\u0026lt;IAmazonS3\u0026gt;();\rbuilder.Services.AddScoped\u0026lt;S3Service\u0026gt;(); Example code for handling image upload. [HttpPost(\u0026#34;upload\u0026#34;)]\rpublic async Task\u0026lt;IActionResult\u0026gt; UploadImage(IFormFile file, [FromServices] S3Service s3Service)\r{\rvar key = await s3Service.UploadFileAsync(file);\rvar url = s3Service.GetFileUrl(key);\rreturn Ok(new { Url = url });\r} "
 },
 {
-	"uri": "//localhost:1313/3-accessibilitytoinstances/",
+	"uri": "/3-accessibilitytoinstances/",
 	"title": "Connect to EC2 Instances",
 	"tags": [],
 	"description": "",
 	"content": "In this step, we will establish connections to our EC2 instances, located in both public and private subnets.\nContents 3.1. Create SNS Notification\n3.2. Create Automatic Lambda\n3.3. Create S3 Notification\n3.4. Create CloudWatch\n"
 },
 {
-	"uri": "//localhost:1313/3-accessibilitytoinstances/3.3-creates3notify/",
+	"uri": "/3-accessibilitytoinstances/3.3-creates3notify/",
 	"title": "Create S3 Notify by Lambda",
 	"tags": [],
 	"description": "",
 	"content": " Go to the S3 service management console. Click on cf-templates-29w3zrvbs88r-us-east-1. On the details page: Click Properties. Scroll down to the Event notifications section and click Create event notification. On the Create event notification page: In the Event name field, enter Notify-Upload-lambda. In the Suffix - optional field, enter .jpg. Click Start Session. Under Object creation, select Put. In the Destination section: Choose Lambda function. Select Choose from your Lambda Functions. Under Lambda function, select NotifyS3Upload. Finally, click Save changes. This is the interface after creation. Go back to the details page to try uploading an image to see if a notification is received. Click Upload. Drag an image from your computer into the upload area. You need to upload an image with the .jpg extension because earlier we configured it to notify only for .jpg files.\nAfter adding the image, scroll down and click Upload. Interface after successful upload. You will receive a notification email. "
 },
 {
-	"uri": "//localhost:1313/3-accessibilitytoinstances/3.4-createcloudwatch/",
+	"uri": "/3-accessibilitytoinstances/3.4-createcloudwatch/",
 	"title": "Create CloudWatch Monitoring",
 	"tags": [],
 	"description": "",
 	"content": " Go to the CloudWatch service management console. Click Alarms. Click All alarms. Click Create alarm. On the Specify metric and conditions page: Click Select metric. On the Select metric interface: Scroll down and select EC2. Choose Per-Instance Metrics. Find and select CPUUtilization. Click Select metric. In the Threshold section, enter 80 Click Next. In the Notification section, click Add notification. Under Send a notification to…, select Notify-Alerts. In the Lambda action section, click Add Lambda action. Under Choose a function, select StopEC2OnHighCPU. Click Next. On the Add alarm details page: In the Add alarm details section, enter a unique name. Click Next. Review the information and click Create Alarm. Interface after successful creation. "
 },
 {
-	"uri": "//localhost:1313/2-prerequiste/2.1-createec2/2.1.2-createsecgroup/",
+	"uri": "/2-prerequiste/2.1-createec2/2.1.2-createsecgroup/",
 	"title": "Create Security Groups",
 	"tags": [],
 	"description": "",
 	"content": "Create Security Groups In this step, we will create the security groups used for our instances. As you can see, these security groups will not need to open traditional ports for SSH like port 22 or Remote Desktop via port 3389.\nCreate a security group for the Linux instance in the public subnet Access the VPC service management console Select Security Group. Click Create security group. In the Security group name field, enter PublicSGEC2. In the Description field, enter Public security group. In the VPC field, select project-vpc, which we created in step 2.1.1. In the Inbound rules section, click Add rule. Set Type to SSH, and Source to Anywhere. Similarly, add two more rules as follows: Type: HTTP, Source: Anywhere Type: HTTPS, Source: Anywhere Leave Outbound rules as default, scroll down. Click Create security group. Similarly, create another security group. Name it Private-DB-SG In the VPC field, select project-vpc In the Inbound rules section, click Add rule Type: MYSQL/Aurora, Source: Custom, select PublicSGEC2 that we just created Click Create security group "
 },
 {
-	"uri": "//localhost:1313/4-s3log/",
+	"uri": "/4-s3log/",
 	"title": "Start Deploying the Project to the Cloud",
 	"tags": [],
 	"description": "",
 	"content": "In this section, we will deploy the project to EC2, then the database, and finally connect the Data and S3 to the web application.\nContents: Deploy .Net project to EC2 Create database from local to RDS Connect S3 to the project "
 },
 {
-	"uri": "//localhost:1313/2-prerequiste/2.1-createec2/2.1.3-createec2linux/",
+	"uri": "/2-prerequiste/2.1-createec2/2.1.3-createec2linux/",
 	"title": "Create Public Linux EC2",
 	"tags": [],
 	"description": "",
 	"content": " Go to the EC2 service management console Click Instances. Click Launch instances. On the Launch an instance page: In the Name and tags section, enter OrderAPI-EC2. In the Application and OS Images (Amazon Machine Image) section, select Amazon Linux. In the Instance type section: Select t2.micro. Create a KeyPair. In the Key pair name - required section, select Create new key pair. On the Create key pair interface: Enter aws-keypair in Key pair name. Leave the rest as default. Click Create key pair. Configure Network settings. Click Edit. To proceed: For VPC - required, select project-vpc. For Subnet, select project-subnet-public1-us-east-1a. For Firewall (security groups), select Select existing security group. In Common security groups, select ec2-rds-1. Then click Launch instance. "
 },
 {
-	"uri": "//localhost:1313/5-cleanup/",
+	"uri": "/5-cleanup/",
 	"title": "Resource Cleanup",
 	"tags": [],
 	"description": "",
 	"content": "We will proceed with the following steps to delete the resources we created in this exercise.\nAccess the EC2 service management console Click Instances. Select both instances: Public Linux Instance and Private Windows Instance. Click Instance state. Click Terminate instance, then click Terminate to confirm. Access the IAM service management console Click Roles. In the search box, enter Lambda_S3_Notify_Role. Click on Lambda_S3_Notify_Role. Click Delete, then enter the role name Lambda_S3_Notify_Role and click Delete to delete the role. Do the same for LambdaStopEC2Role. Access the S3 service management console Click the S3 bucket we created for the exercise. Click Empty. Enter permanently delete, then click Empty to proceed with deleting the objects in the bucket. Click Exit. To ensure a complete cleanup, you can refer to https://000057.awsstudygroup.com/11-cleanup/\nAccess the RDS service management console Select database-1. Click Actions. Click Delete. Uncheck Create final snapshot and Retain automated backups. Check I acknowledge that upon instance deletion, automated backups, including system snapshots and point-in-time recovery, will no longer be available. Enter delete me into the To confirm deletion, type delete me into the field. Access the VPC service management console You can refer to the cleanup steps in this lab: https://000003.awsstudygroup.com/6-cleanup/\nDelete Subnet\nDelete SecurityGroup\nDelete router\nDelete Your VPC\nAccess the SNS service management console Access the Lambda service management console Access the CloudWatch service management console "
 },
 {
-	"uri": "//localhost:1313/2-prerequiste/2.3-createrds/",
+	"uri": "/2-prerequiste/2.3-createrds/",
 	"title": "Create RDS Database",
 	"tags": [],
 	"description": "",
 	"content": "Create Subnet Group Go to the RDS service management console Select Subnet groups. Click Create DB Subnet group. On the Create DB Subnet group page: In the Name field, enter database-subnet-1. In the Description field, enter subnet for database 1. In the VPC section, select project-vpc. In the Availability Zones section, select us-east-1a and us-east-1b. In the Subnets section: Select project-subnet-private2-us-east-1b and project-subnet-private1-us-east-1a. Click Create. Create RDS Go to the RDS service management console Select Databases. Click Create database. On the Create database page: Select Standard create. In the Engine options section, choose MySQL. Scroll down: In the Templates section, select Dev/test. In the Availability and durability section, select Single-AZ DB instance deployment (1 instance). Scroll to the Settings section: In the DB instance identifier field, enter database-1 (you can change this). In the Credentials Settings section, select Self managed. Enter a strong password in the Master password field. Re-enter the password in the Confirm master password field. Scroll to the Instance configuration section: Choose Burstable classes (includes t classes). Select db.t3.micro. Scroll to the Connectivity section: Select Connect to an EC2 compute resource. In the EC2 instance field, choose Order-API-EC2. Continue to the DB subnet group section: Choose Choose existing. In the Existing DB subnet groups field, select database-subnet-1. In the Additional VPC security group field, select Private-DB-Sg. In the Database authentication section, leave it as default. In the Log exports section: Select Error log and Slow query log. Then click Create database. Wait a moment for the RDS to be created. "
 },
 {
-	"uri": "//localhost:1313/2-prerequiste/2.4-creates3/",
+	"uri": "/2-prerequiste/2.4-creates3/",
 	"title": "Create S3",
 	"tags": [],
 	"description": "",
 	"content": "Create Subnet Group Go to the S3 service management console Select General purpose buckets. Click Create bucket. On the Create bucket page: In the Bucket type section, select General purpose. In the Bucket name field, enter cf-templates-29w3zrvbs88r-us-east-1. Review the information and leave other settings as default. Click Create bucket. "
 },
 {
-	"uri": "//localhost:1313/categories/",
+	"uri": "/categories/",
 	"title": "Categories",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/tags/",
+	"uri": "/tags/",
 	"title": "Tags",
 	"tags": [],
 	"description": "",
