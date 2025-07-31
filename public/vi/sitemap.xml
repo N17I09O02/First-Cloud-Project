@@ -15,6 +15,19 @@
                 href="//localhost:1313/vi/2-prerequiste/2.1-createec2/"
                 />
   </url><url>
+    <loc>//localhost:1313/vi/</loc>
+    <lastmod>2025-06-14T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/"
+                />
+  </url><url>
     <loc>//localhost:1313/vi/4-s3log/4.1-updateiamrole/</loc>
     <lastmod>2025-06-14T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -39,19 +52,6 @@
                 rel="alternate"
                 hreflang="vi"
                 href="//localhost:1313/vi/1-introduce/"
-                />
-  </url><url>
-    <loc>//localhost:1313/vi/</loc>
-    <lastmod>2025-06-14T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/"
                 />
   </url><url>
     <loc>//localhost:1313/vi/3-accessibilitytoinstances/3.1-public-instance/</loc>
@@ -160,6 +160,16 @@
   </url><url>
     <loc>//localhost:1313/vi/3-accessibilitytoinstances/3.3-creates3notify/</loc>
     <lastmod>2025-06-14T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-accessibilitytoinstances/3.3-creates3notify/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-accessibilitytoinstances/3.3-creates3notify/"
+                />
   </url><url>
     <loc>//localhost:1313/vi/4-s3log/</loc>
     <lastmod>2025-06-14T00:00:00+00:00</lastmod>

@@ -28,6 +28,32 @@
                 href="//localhost:1313/2-prerequiste/2.1-createec2/2.1.1-createvpc/"
                 />
   </url><url>
+    <loc>//localhost:1313/4-s3log/4.1-updateiamrole/</loc>
+    <lastmod>2025-06-14T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/4-s3log/4.1-updateiamrole/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/4-s3log/4.1-updateiamrole/"
+                />
+  </url><url>
+    <loc>//localhost:1313/</loc>
+    <lastmod>2025-06-14T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/"
+                />
+  </url><url>
     <loc>//localhost:1313/1-introduce/</loc>
     <lastmod>2025-06-14T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -54,32 +80,6 @@
                 href="//localhost:1313/2-prerequiste/2.1-createec2/"
                 />
   </url><url>
-    <loc>//localhost:1313/</loc>
-    <lastmod>2025-06-14T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/"
-                />
-  </url><url>
-    <loc>//localhost:1313/4-s3log/4.1-updateiamrole/</loc>
-    <lastmod>2025-06-14T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/4-s3log/4.1-updateiamrole/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/4-s3log/4.1-updateiamrole/"
-                />
-  </url><url>
     <loc>//localhost:1313/2-prerequiste/2.2-createiamrole/</loc>
     <lastmod>2025-06-14T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -93,17 +93,17 @@
                 href="//localhost:1313/2-prerequiste/2.2-createiamrole/"
                 />
   </url><url>
-    <loc>//localhost:1313/4-s3log/4.2-creates3bucket/</loc>
+    <loc>//localhost:1313/3-accessibilitytoinstances/3.2-createlambda/</loc>
     <lastmod>2025-06-14T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/4-s3log/4.2-creates3bucket/"
+                href="//localhost:1313/vi/3-accessibilitytoinstances/3.2-createlambda/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/4-s3log/4.2-creates3bucket/"
+                href="//localhost:1313/3-accessibilitytoinstances/3.2-createlambda/"
                 />
   </url><url>
     <loc>//localhost:1313/2-prerequiste/</loc>
@@ -119,17 +119,17 @@
                 href="//localhost:1313/2-prerequiste/"
                 />
   </url><url>
-    <loc>//localhost:1313/3-accessibilitytoinstances/</loc>
+    <loc>//localhost:1313/4-s3log/4.2-creates3bucket/</loc>
     <lastmod>2025-06-14T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/3-accessibilitytoinstances/"
+                href="//localhost:1313/vi/4-s3log/4.2-creates3bucket/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/3-accessibilitytoinstances/"
+                href="//localhost:1313/4-s3log/4.2-creates3bucket/"
                 />
   </url><url>
     <loc>//localhost:1313/4-s3log/4.3-creategwes3/</loc>
@@ -143,6 +143,45 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/4-s3log/4.3-creategwes3/"
+                />
+  </url><url>
+    <loc>//localhost:1313/3-accessibilitytoinstances/</loc>
+    <lastmod>2025-06-14T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-accessibilitytoinstances/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-accessibilitytoinstances/"
+                />
+  </url><url>
+    <loc>//localhost:1313/3-accessibilitytoinstances/3.3-creates3notify/</loc>
+    <lastmod>2025-06-14T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-accessibilitytoinstances/3.3-creates3notify/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-accessibilitytoinstances/3.3-creates3notify/"
+                />
+  </url><url>
+    <loc>//localhost:1313/3-accessibilitytoinstances/3.4-createcloudwatch/</loc>
+    <lastmod>2025-06-14T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-accessibilitytoinstances/3.4-createcloudwatch/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-accessibilitytoinstances/3.4-createcloudwatch/"
                 />
   </url><url>
     <loc>//localhost:1313/2-prerequiste/2.1-createec2/2.1.2-createsecgroup/</loc>
@@ -221,30 +260,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/2-prerequiste/2.4-creates3/"
-                />
-  </url><url>
-    <loc>//localhost:1313/3-accessibilitytoinstances/3.2-createlambda/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/3-accessibilitytoinstances/3.2-createlambda/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/3-accessibilitytoinstances/3.2-createlambda/"
-                />
-  </url><url>
-    <loc>//localhost:1313/3-accessibilitytoinstances/3.4-createcloudwatch/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/3-accessibilitytoinstances/3.4-createcloudwatch/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/3-accessibilitytoinstances/3.4-createcloudwatch/"
                 />
   </url><url>
     <loc>//localhost:1313/categories/</loc>
